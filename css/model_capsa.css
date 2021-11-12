@@ -1,0 +1,69 @@
+#menu{
+    width:10%;
+    height: 90vh;
+}
+
+#menuDerecho{
+    width:10%;
+    height: 90vh;
+    float: right;
+}
+
+div{
+    padding: 15px;
+    border: 1px solid black;
+    width: 40%;
+    position: relative;
+    float: left;
+}
+
+.borde_rojo{
+    border: 1px solid red;
+}
+
+.derecha{
+    float: right;
+}
+.alto{
+    height: 250px;
+}
+
+span{
+    display: inline-block;
+    border: 1px solid black;
+    position: relative;
+    width: 40%;
+}
+
+span:nth-of-type(2n){
+    float: right;
+}
+
+.esquina{
+    position: absolute;
+    right: 100px;
+    bottom: 15px;
+}
+
+.centrado_horizontal{
+    float: unset; /* Como hereda el float:left del selector "div" hay que quitarselo aquí */
+    margin: 0 auto; /* centra el element */ 
+    text-align: center; /* afecta al interior del componente */
+}
+
+.fixe{
+    position: fixed;
+    top: 150px;
+    left: 150px;
+    background-color: red;
+}
+
+.contenedor{
+    float: left;
+    margin: 0 auto;
+    text-align: center;
+}
+
+body{
+    margin: 0;
+}
