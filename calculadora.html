@@ -9,9 +9,17 @@
 
     <script>
 
+
+        
+
         function operar(operacion){
-            var valor1 = document.getElementById("primero").value; //obtiene el valor del input
-            var valor2 = document.getElementById("segundo").value; //obtiene el valor del input
+            
+            var primero = document.getElementById("primero");
+            var segundo = document.getElementById("segundo");
+            var resul = document.getElementById("resultado");
+
+            var valor1 = primero.value; //obtiene el valor del input
+            var valor2 = segundo.value; //obtiene el valor del input
             
             var resultado; 
             if (operacion == "+"){
@@ -21,16 +29,41 @@
             } else if (operacion == "*"){
                 resultado = parseInt(valor1) * parseInt(valor2);
             } else if (operacion == "/"){
-                resultado = parseInt(valor1) / parseInt(valor2);
+
+                if (valor2 == 0){
+                    alert("No se puede dividir por 0");
+                    resultado = "ERROR!";
+                } else{
+                    resultado = parseInt(valor1) / parseInt(valor2);
+                }
+
+            } else if (operacion == "raiz"){
+                resultado = Math.sqrt(parseInt(valor1));
             }
             
-            document.getElementById("resultado").value = resultado;
+            resul.value = resultado;
             if (resultado<0){
-                document.getElementById("resultado").style.color="red";
+                resul.style.color="red";
             } else{
-                document.getElementById("resultado").style.color="green";
+                resul.style.color="green";
             }
+
+            if (resultado%2==0){ //es par
+                document.getElementById("paridad").innerHTML = "PAR";
+            } else if (resultado%2==1){ //es impar
+                document.getElementById("paridad").innerHTML = "IMPAR";
+            } else{
+                document.getElementById("paridad").innerHTML = "NS/NC";
+            }
+
         }
+
+        function borrar(){
+            document.getElementById("primero").value = "";
+            document.getElementById("segundo").value = "";
+            document.getElementById("resultado").value = "";
+        }
+
     </script>
 
 </head>
@@ -42,13 +75,14 @@
 
     <button id="boton" onclick="operar('+')">+</button>
     <button id="boton" onclick="operar('-')">-</button>
-    <br>
     <button id="boton" onclick="operar('*')">*</button>
     <button id="boton" onclick="operar('/')">/</button>
+    <button id="boton" onclick="operar('raiz')">&#8730;</button>
+    <button id="boton" onclick="borrar()">CE</button>
 
     <br><br>
     <label for="resultado">Resultado</label>
-    <input type="number" id="resultado"> <br>
+    <input type="text" id="resultado"> <label id="paridad"></label><br>
 </body>
 
 </html>
