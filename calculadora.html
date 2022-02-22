@@ -41,7 +41,7 @@
                 resultado = Math.sqrt(parseInt(valor1));
             }
             
-            resul.value = resultado;
+            resul.value = resultado; //escribimos el resultado en el input
             if (resultado<0){
                 resul.style.color="red";
             } else{
@@ -54,6 +54,23 @@
                 document.getElementById("paridad").innerHTML = "IMPAR";
             } else{
                 document.getElementById("paridad").innerHTML = "NS/NC";
+            }
+
+            if(resultado<0){
+                document.getElementById("cuentaAtras").innerHTML = "0";
+            } else{
+                resultado = parseInt(resultado);
+
+                var cuentaAtras = "";
+                while (resultado>=0){
+                    cuentaAtras += resultado; //cuentaAtras = cuentaAtras+ "";
+                    if (resultado>0) cuentaAtras += ", ";
+                    resultado--;
+                }
+                
+                document.getElementById("cuentaAtras").innerHTML = cuentaAtras;
+
+
             }
 
         }
@@ -83,6 +100,7 @@
     <br><br>
     <label for="resultado">Resultado</label>
     <input type="text" id="resultado"> <label id="paridad"></label><br>
+    Cuenta atrás: <label id="cuentaAtras"></label>
 </body>
 
 </html>
