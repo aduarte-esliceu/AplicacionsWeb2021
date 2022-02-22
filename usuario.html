@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +8,30 @@
     <title>Document</title>
 
     <script>
-
-        function username(){
-
+        function _id(ident) {
+            return document.getElementById(ident);
         }
-        
+
+        function obtenValor(ident) {
+            return _id(ident).value;
+        }
+
+        function username() {
+
+            var nombre = obtenValor("nombre");
+            var apellido = obtenValor("apellido");
+
+            //var fecha = new Date(obtenValor("nacimiento"));
+            //var anyo = fecha.getFullYear().toString().substr(2, 2);
+
+            anyo = obtenValor("nacimiento").substr(2,2); //más simple
+
+            _id("resultado").innerHTML = nombre.substr(0,3)+apellido.substr(0,3)+anyo;
+        }
     </script>
-    
+
 </head>
+
 <body>
 
     <label>Nombre:
@@ -28,7 +45,9 @@
     <label>F.Nac:
         <input type="date" id="nacimiento">
     </label>
-<br>
+    <br>
     <button id="boton" onclick="username()">username</button>
+    <label id="resultado"></label>
 </body>
+
 </html>
