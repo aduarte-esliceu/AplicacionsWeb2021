@@ -9,14 +9,15 @@
 
     <script>
 
-
-        
+        function _id(ident){
+            return document.getElementById(ident);
+        }
 
         function operar(operacion){
             
-            var primero = document.getElementById("primero");
-            var segundo = document.getElementById("segundo");
-            var resul = document.getElementById("resultado");
+            var primero = _id("primero");
+            var segundo = _id("segundo");
+            var resul = _id("resultado");
 
             var valor1 = primero.value; //obtiene el valor del input
             var valor2 = segundo.value; //obtiene el valor del input
@@ -41,7 +42,8 @@
                 resultado = Math.sqrt(parseInt(valor1));
             }
             
-            resul.value = resultado; //escribimos el resultado en el input
+            resul.value = resultado.toPrecision(6); //escribimos el resultado en el input
+            resultado = parseInt(resultado); //quitamos los decimales
             if (resultado<0){
                 resul.style.color="red";
             } else{
@@ -49,36 +51,44 @@
             }
 
             if (resultado%2==0){ //es par
-                document.getElementById("paridad").innerHTML = "PAR";
+                _id("paridad").innerHTML = "PAR";
             } else if (resultado%2==1){ //es impar
-                document.getElementById("paridad").innerHTML = "IMPAR";
+                _id("paridad").innerHTML = "IMPAR";
             } else{
-                document.getElementById("paridad").innerHTML = "NS/NC";
+                _id("paridad").innerHTML = "NS/NC";
             }
 
             if(resultado<0){
-                document.getElementById("cuentaAtras").innerHTML = "0";
+                _id("cuentaAtras").innerHTML = "0";
             } else{
-                resultado = parseInt(resultado);
+                var resultadoEntero = resultado;
 
                 var cuentaAtras = "";
-                while (resultado>=0){
-                    cuentaAtras += resultado; //cuentaAtras = cuentaAtras+ "";
-                    if (resultado>0) cuentaAtras += ", ";
-                    resultado--;
+                while (resultadoEntero>=0){
+                    cuentaAtras += resultadoEntero; //cuentaAtras = cuentaAtras+ "";
+                    if (resultadoEntero>0) cuentaAtras += ", ";
+                    resultadoEntero--;
                 }
                 
                 document.getElementById("cuentaAtras").innerHTML = cuentaAtras;
 
+                var divisores = "";
+                for(var divisor = resultado; divisor>0; divisor--){
+                    if (resultado%divisor==0){
+                        divisores+=divisor + ", ";
+                    }
+                }
+
+                _id("divisores").innerHTML = divisores;
 
             }
 
         }
 
         function borrar(){
-            document.getElementById("primero").value = "";
-            document.getElementById("segundo").value = "";
-            document.getElementById("resultado").value = "";
+            _id("primero").value = "";
+            _id("segundo").value = "";
+            _id("resultado").value = "";
         }
 
     </script>
@@ -100,7 +110,8 @@
     <br><br>
     <label for="resultado">Resultado</label>
     <input type="text" id="resultado"> <label id="paridad"></label><br>
-    Cuenta atrás: <label id="cuentaAtras"></label>
+    Cuenta atrás: <label id="cuentaAtras"></label> <br>
+    Divisores: <label id="divisores"></label> <br>
 </body>
 
 </html>
