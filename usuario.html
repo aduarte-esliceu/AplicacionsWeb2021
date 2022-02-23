@@ -8,6 +8,9 @@
     <title>Document</title>
 
     <script>
+
+        var nombresdeusuario = [];
+
         function _id(ident) {
             return document.getElementById(ident);
         }
@@ -26,7 +29,19 @@
 
             anyo = obtenValor("nacimiento").substr(2,2); //más simple
 
-            _id("resultado").innerHTML = nombre.substr(0,3)+apellido.substr(0,3)+anyo;
+            nombresdeusuario.push(nombre.substr(0,3)+apellido.substr(0,3)+anyo);
+
+            var textoResultado = "";
+            for(var i=0; i<nombresdeusuario.length; i++){
+                textoResultado += nombresdeusuario[i]+", ";
+            }
+
+            _id("resultado").innerHTML = textoResultado;
+        }
+
+        function limpiar(){
+            nombresdeusuario = [];
+            _id("resultado").innerHTML = "";
         }
     </script>
 
@@ -46,8 +61,10 @@
         <input type="date" id="nacimiento">
     </label>
     <br>
-    <button id="boton" onclick="username()">username</button>
+    <button id="boton" onclick="username()">username</button><br>
     <label id="resultado"></label>
+    <button id="boton" onclick="limpiar()">limpiar</button><br>
+
 </body>
 
 </html>
