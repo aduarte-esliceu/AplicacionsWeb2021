@@ -1,0 +1,34 @@
+.contenedor{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 88vh;
+    align-items: center;
+}
+
+.izquierda, .derecha{
+    display: flex;
+    flex-direction: column;
+}
+
+.caja{
+    border: 1px solid red;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 1%;
+}
+.footer{
+    height: 8vh;
+    text-align: center;
+}
+
+body{
+    margin: 0;
+    width: 99.9%; /* per que no desbordi*/
+}
